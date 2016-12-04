@@ -2,27 +2,30 @@
 <html>
 <head>
   <title>Tiper</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
 
 
-  <div id="info-bar" class="border">
+  <div id="info-bar" class="">
     <div class="menu-item brand">TIPER</div>
-    <div class="menu-item item-1">About</div>
-    <div class="menu-item item-2">Donate</div>
-    <div class="menu-item item-3">Preferences</div>
+    <div class="menu-item item-1 hidden-mobile">About</div>
+    <div id="info-box-one" class="info-box border hidden-mobile"> Tiper is a powerful tool, and fun game, to increase typing speeds. Have fun while boosting your inner typist!</div>
+    <div class="menu-item item-2 hidden-mobile">Donate</div>
+    <div id="info-box-two" class="info-box border hidden-mobile">Want to buy me a coffee? Consider donating a small amount:</div>
+    <div class="menu-item item-3 hidden-mobile">Contributions</div>
+    <div id="info-box-two" class="info-box border hidden-mobile">Here the github repository for this website:</div>
   </div>
 
   <section id="main">
     <section id="page" class="border">
 
-    <section id="content">
-      <div id="type-app">
-        <p id="key-timer">00:00</p>
-        <div id="type-input" class="fine" ><span id="typed"></span><span id="untyped" tabindex="1" contenteditable="true"></span></div>
-        <p id="error" class="error hidden"></p>
+    <div id="content">
+      <h4 id="keywatch">CLASSIC</h4>
+      <div id="classic-wrapper" class="white-border">
+        <button id="classic-button" class="white-border">Play!</button>
       </div>
-    </section>
+    </div>
 
     </section>
   </section>

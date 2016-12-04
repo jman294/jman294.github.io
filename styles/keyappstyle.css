@@ -1,11 +1,15 @@
 @import url('https://fonts.googleapis.com/css?family=Inconsolata:400,700');
-
+::selection {
+  background: #a0e7a0; /* WebKit/Blink Browsers */
+}
+::-moz-selection {
+  background: #a0e7a0; /* Gecko Browsers */
+}
 *, *:before, *:after {
   box-sizing: inherit;
 }
 html {
   box-sizing: border-box;
-
   font-family: 'Inconsolata', monospace;
 }
 
@@ -24,14 +28,20 @@ body {
   top: 0;
 
 
+  border-right: 1px solid #e6e6e6;
+
+  /* Safari 3-4, iOS 1-3.2, Android 1.6- */
+  -webkit-border-radius: 4px; 
+
+  /* Firefox 1-3.6 */
+  -moz-border-radius: 4px; 
+  
+  /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
+  border-radius: 4px; 
+
   height: 100%;
   text-align: center;
   padding: 20px;
-}
-
-.list-item {
-  margin-left: 0;
-  padding-left: 0;
 }
 
 .border {
@@ -41,6 +51,55 @@ body {
   border-left: 1px solid #e6e6e6;
   border-top: 1px solid #e6e6e6;
   border-bottom: 1px solid #e6e6e6;
+
+  /* Safari 3-4, iOS 1-3.2, Android 1.6- */
+  -webkit-border-radius: 4px; 
+
+  /* Firefox 1-3.6 */
+  -moz-border-radius: 4px; 
+  
+  /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
+  border-radius: 4px; 
+}
+
+.white-border {
+  border: solid thin;
+  border-bottom: 1px solid #fff;
+  border-right: 1px solid #fff;
+  border-left: 1px solid #fff;
+  border-top: 1px solid #fff;
+  border-bottom: 1px solid #fff;
+
+  /* Safari 3-4, iOS 1-3.2, Android 1.6- */
+  -webkit-border-radius: 4px; 
+
+  /* Firefox 1-3.6 */
+  -moz-border-radius: 4px; 
+  
+  /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
+  border-radius: 4px; 
+}
+
+.menu-item {
+  width: 100%;
+  height: 25px;
+  padding: 7px;
+  padding-top: 13px;
+}
+.brand {
+  font-weight: 700;
+  padding-left: 10px;
+  font-size: 20pt;
+  padding-bottom: 1%;
+}
+.info-box {
+  line-height: 15px;
+  padding: 20px;
+  width: 100%;
+  font-size: 10pt;
+}
+.info-box:hover {
+  border-color: #a0e7a0;
 }
 
 #main {
@@ -53,127 +112,51 @@ body {
 #page {
   position: absolute;
   width: 60%;
-  top: 30%;
-  left: 65%;
-  bottom: 50%;
-  height: 1000px;
-  margin: -100px 0 0 -40%;
+  top: 200px;
+  left: 66%;
+  bottom: -50px;
+  height: 900px;
+  margin: -100px -50px 0 -40%;
   background-color: #fff;
   opacity: 1;
 
   padding: 1%;
-
-  /* Safari 3-4, iOS 1-3.2, Android 1.6- */
-  -webkit-border-radius: 4px; 
-
-  /* Firefox 1-3.6 */
-  -moz-border-radius: 4px; 
-  
-  /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
-  border-radius: 4px; 
 }
-
 /* Small screens */
-@media all and (max-width: 700px) {
+@media screen and (max-device-width: 500px) {
   #page {
     position: absolute;
     width: 80%;
-    top: 30%;
+    top: 150px;
     left: 50%;
     bottom: 50%;
     margin: -16% 0 0 -40%;
+    padding: 10px;
   }
   #info-bar {
-    top: 0;
     right: 0;
     left: 0;
     width: 100%;
     height: 50px;
     background-color: #fff;
     border-bottom: 1px solid #e6e6e6;
-    padding: 1%;
+    padding: 2%;
     z-index: 20;
     text-align: left;
 
     display: flex;
+
     align-items: center;
   }
+  .hidden-mobile {
+    display: none;
+  }
   .menu-item {
-    padding: 20px;
+    padding: 5px;
     font-family: 
   }
   .brand {
     font-weight: 700;
     padding-left: 10px;
   }
-}
-
-#type-app {
-  font-family: 'Inconsolata', monospace;
-  border: inherit;
-  color: black;
-  padding: 1%;
-  display: flex;
-  flex-direction: column;
-  flex: 1 50%;
-
-}
-#type-input {
-  font-family: 'Inconsolata', monospace;
-  flex: 1 100%;
-}
-#key-timer {
-  flex: 1 100%;
-}
-#error {
-  font-weight: 700;
-  flex: 1 100%;
-  font-size: 12pt;
-}
-#typed, #untyped {
-  word-wrap: all;
-  word-wrap: break-word;
-}
-#typed {
-  font-weight: 700;
-}
-.fine {
-  background-color: #a0e7a0;
-  border: solid thin;
-  border-bottom: 1px solid #d3d3d3;
-  border-right: 1px solid #d3d3d3;
-  border-left: 1px solid #d3d3d3;
-  border-top: 1px solid #d3d3d3;
-  border-bottom: 1px solid #d3d3d3;
-
-  /* Safari 3-4, iOS 1-3.2, Android 1.6- */
-  -webkit-border-radius: 4px; 
-
-  /* Firefox 1-3.6 */
-  -moz-border-radius: 4px; 
-  
-  /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
-  border-radius: 4px; 
-} 
-.error {
-  background-color: #ff9994;
-  border: solid thin;
-  border-bottom: 1px solid #d3d3d3;
-  border-right: 1px solid #d3d3d3;
-  border-left: 1px solid #d3d3d3;
-  border-top: 1px solid #d3d3d3;
-  border-bottom: 1px solid #d3d3d3;
-
-  /* Safari 3-4, iOS 1-3.2, Android 1.6- */
-  -webkit-border-radius: 4px; 
-
-  /* Firefox 1-3.6 */
-  -moz-border-radius: 4px; 
-  
-  /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
-  border-radius: 4px; 
-}
-.hidden {
-  content: &nbsp;
-  min-height: 10px;
 }
