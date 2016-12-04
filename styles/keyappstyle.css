@@ -84,7 +84,7 @@ body {
   width: 100%;
   height: 25px;
   padding: 7px;
-  padding-top: 13px;
+  /* padding-top: 13px;*/
 }
 .brand {
   font-weight: 700;

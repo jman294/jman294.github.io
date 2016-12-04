@@ -17,7 +17,7 @@ export default class {
     this.timer.stop()
     this.status = document.createElement('p')
     this.status.id = 'classic-status'
-    this.status.className = 'status white-border'
+    this.status.className = 'border'
     this.status.textContent = 'Ready?'
     this.error = document.createElement('p')
     this.error.id = 'classic-error'
@@ -33,15 +33,12 @@ export default class {
     this.createText(text)
     this.index = new Indext(this.typed, this.untyped, this.message)
     this.errorField = new Field(this.error)
+    this.parent.appendChild(this.status)
     this.parent.appendChild(this.error)
     this.parent.appendChild(this.time)
-    this.parent.appendChild(this.status)
     this.parent.appendChild(this.text)
     
     return this.parent
-  }
-  stop () {
-    this.timer.stop()
   }
   createText (text) {
     while (this.text.firstChild) {
@@ -60,15 +57,19 @@ export default class {
   run (text, onEnd) {
     this.index.reset(text)
     this.untyped.textContent = text
-    this.time.textContent = '0:00'
+    this.time.textContent = '00:00'
     this.error.textContent = ''
+    this.status.textContent = 'Get ready to type'
 
     var ticker = this.timer.ticker((formattedTime, percentDone) => {
       this.clock = percentDone
       this.time.textContent = formattedTime
     })
+    this.status.textContent = 'Type! If you make an error, backspace'
+    this.status.className = this.status.className + ' go'
     this.timer.start()
       
+    this.untyped.focus()
     watch(this.untyped, (e) => {
       
       let char = keycoder.eventToCharacter(e)

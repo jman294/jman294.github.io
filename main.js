@@ -12,8 +12,16 @@ classicParent = document.querySelector('#classic-app')
 var button = document.querySelector('#classic-button')
 
 button.addEventListener('click', () => {
+  startClassic()
   console.log('click')
 })
-asdf.run(text, () => {
-  console.log('done')
-})
+const startClassic = () => {
+  document.querySelector('#classic-wrapper').removeChild(classicParent)
+  classicParent = asdf.create(text)
+  console.log(classicParent)
+  document.querySelector('#classic-wrapper').appendChild(classicParent)
+
+  asdf.run(text, () => {
+    console.log('done')
+  })
+}

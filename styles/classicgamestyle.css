@@ -1,5 +1,12 @@
+#classic-wrapper {
+  padding: 2%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
 
+}
 #classic-app {
+  flex: 0 1 100%;
   padding: 1%;
   display: flex;
   flex-direction: row;
@@ -12,18 +19,20 @@
 }
 
 #classic-time {
-  flex: .5;
+  flex: 1;
+  text-align: right;
   padding: 1%;
 }
 
 #classic-error {
-  flex: 2;
+  flex: 6;
   background-color: #ff9994;
   line-height: 170%;
 }
 
 #classic-status {
-  flex: .25;
+  flex: 0 1 100%;
+  text-align: right;
   padding: 1%;
 }
 
@@ -34,7 +43,7 @@
   /*width: 30px; */
   height: 2em;
   margin-top: 15px;
-  /* flex: .5;*/
+  flex: .1;
   border-color: lightgrey;
   cursor: pointer;
   background-color: #FFF;
@@ -65,4 +74,7 @@
 } 
 .error {
   background: #ff9994;
+}
+.go {
+  font-weight: 700;
 }
