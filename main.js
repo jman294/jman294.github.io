@@ -20,6 +20,8 @@ button.addEventListener('click', () => {
 let status = document.querySelector('#classic-status')
 status.textContent = 'To play: Type the text in the green box, backspacing if you make an error'
 const startClassic = () => {
+  asdf.timer.stop()
+    document.querySelector('#classic-untyped').removeAttribute('tabindex')
 	timer.stop()
 timer = new Timr('4')
   status = document.querySelector('#classic-status')
@@ -34,7 +36,7 @@ timer = new Timr('4')
     classicParent = asdf.create(text)
     console.log(classicParent)
     content.appendChild(classicParent)
-
+    document.querySelector('#classic-untyped').setAttribute('tabindex', '0')
     asdf.run(text, () => {
       console.log('done')
     })
