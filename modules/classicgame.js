@@ -55,6 +55,7 @@ export default class {
 
   }
   run (text, onEnd) {
+    let notGone = true
     this.index.reset(text)
     this.untyped.textContent = text
     this.time.textContent = '00:00'
@@ -64,6 +65,15 @@ export default class {
     var ticker = this.timer.ticker((formattedTime, percentDone) => {
       this.clock = percentDone
       this.time.textContent = formattedTime
+      if (notGone) {
+        
+        if (this.text.className.indexOf('blue') !== -1) {
+          this.text.className = this.text.className.replace('blue', '')
+        } else {
+          this.text.className = this.text.className + ' blue'
+        }
+      } else {
+      }
     })
     this.status.textContent = 'Type! If you make an error, backspace'
     this.status.className = this.status.className + ' go'
@@ -71,7 +81,8 @@ export default class {
       
     this.untyped.focus()
     watch(this.untyped, (e) => {
-      
+      this.text.className = this.text.className.replace('blue', '')
+      notGone = false 
       let char = keycoder.eventToCharacter(e)
       console.log(char)
       if (char === this.index.currentChar() && this.errorField.empty()) {

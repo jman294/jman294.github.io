@@ -1,4 +1,5 @@
 #classic-wrapper {
+  font-size: 15pt important!;
   padding: 2%;
   display: flex;
   flex-wrap: wrap;
@@ -13,7 +14,9 @@
   font-size: 11pt;
   flex-wrap: wrap;
 }
-
+#classic-header {
+  font-size: 14pt;
+}
 #classic-typed {
   font-weight: 700;
 }
@@ -31,6 +34,7 @@
 }
 
 #classic-status {
+  font-size: 14pt;
   flex: 0 1 100%;
   text-align: right;
   padding: 1%;
@@ -66,6 +70,7 @@
   outline: 0;
 }
 #classic-text {
+  font-size: inherit;
   align-self: flex-end;
   padding: 1%;
   flex: 0 1 100%;
@@ -78,4 +83,7 @@
 }
 .go {
   font-weight: 700;
+}
+.blue {
+  background: #aec6cf;
 }

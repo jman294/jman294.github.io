@@ -5,7 +5,7 @@ import watch from './modules/inputeventwatcher'
 import ClassicGame from './modules/classicgame'
 
 let timer = new Timr('4')
-let text = 'I am some new text'
+let text = 'This is some new and interesting text that I will hopefully get from Wikipedia soon. The Quick bRown fOx jumps over  th l3zi dog.--7^'
 let asdf = new ClassicGame()
 let classicParent = asdf.create(text)
 let content = document.querySelector('#classic-wrapper')
@@ -21,9 +21,9 @@ let status = document.querySelector('#classic-status')
 status.textContent = 'To play: Type the text in the green box, backspacing if you make an error'
 const startClassic = () => {
   asdf.timer.stop()
-    document.querySelector('#classic-untyped').removeAttribute('tabindex')
-	timer.stop()
-timer = new Timr('4')
+  document.querySelector('#classic-untyped').removeAttribute('tabindex')
+  timer.stop()
+  timer = new Timr('4')
   status = document.querySelector('#classic-status')
   status.textContent = 'Get ready to type!'
 
