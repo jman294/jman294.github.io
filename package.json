@@ -11,6 +11,9 @@
     "deploy": ""
   },
   "devDependencies": {
+    "url-loader": "^0.5.x",
+    "file-loader": "^0.9.x",
+    "svg-url-loader": "^1.1.x",
     "timrjs": "^0.9.x",
     "keycoder": "^1.1.1",
     "babel-loader": "^6.2.x",

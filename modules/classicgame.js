@@ -4,6 +4,7 @@ import Field from './field'
 import Indext from './indext'
 import * as keycoder from 'keycoder'
 require('../styles/classicgamestyle.css')
+require('../font-awesome/css/font-awesome.min.css')
 
 export default class {
   constructor () {
@@ -26,63 +27,80 @@ export default class {
     this.time.id = 'classic-time'
     this.time.className = 'white-border'
     this.time.textContent = '00:00'
-    this.text = document.createElement('p')
-    this.text.id = 'classic-text'
-    this.text.className = 'fine white-border'
-
-    this.createText(text)
-    this.index = new Indext(this.typed, this.untyped, this.message)
+    
+    this.text = this.createText(text)
     this.errorField = new Field(this.error)
+    this.buildParent() 
+    return this.parent
+  }
+  buildParent () {
+    while (this.parent.firstChild) {
+      this.parent.removeChild(this.parent.firstChild)
+    }
+    this.text = this.createText(this.message)
     this.parent.appendChild(this.status)
     this.parent.appendChild(this.error)
     this.parent.appendChild(this.time)
     this.parent.appendChild(this.text)
-    
-    return this.parent
+      
   }
-  createText (text) {
-    while (this.text.firstChild) {
-      this.text.removeChild(this.text.firstChild)
-    }
+  createText (message) {
+    let text = document.createElement('p')
+    text.id = 'classic-text'
+    text.className = 'fine white-border'
     this.typed = document.createElement('span')
     this.typed.id = 'classic-typed'
     this.untyped = document.createElement('span')
     this.untyped.id = 'classic-untyped'
     this.untyped.setAttribute('tabindex', '0')
-    this.untyped.textContent = text
-    this.text.appendChild(this.typed)
-    this.text.appendChild(this.untyped)
-
+    this.untyped.textContent = message
+    this.index = new Indext(this.typed, this.untyped, message)
+    text.appendChild(this.typed)
+    text.appendChild(this.untyped)
+    return text
   }
-  run (text, onEnd) {
-    let notGone = true
+  preStart (text) {
+    // Make timer update clock element every second
+    var ticker = this.timer.ticker((formattedTime, percentDone) => {
+      this.clock = percentDone
+      this.time.textContent = formattedTime
+    })
     this.index.reset(text)
     this.untyped.textContent = text
     this.time.textContent = '00:00'
     this.error.textContent = ''
     this.status.textContent = 'Get ready to type'
-
-    var ticker = this.timer.ticker((formattedTime, percentDone) => {
-      this.clock = percentDone
-      this.time.textContent = formattedTime
-      if (notGone) {
-        
-        if (this.text.className.indexOf('blue') !== -1) {
-          this.text.className = this.text.className.replace('blue', '')
-        } else {
-          this.text.className = this.text.className + ' blue'
-        }
-      } else {
-      }
-    })
     this.status.textContent = 'Type! If you make an error, backspace'
-    this.status.className = this.status.className + ' go'
     this.timer.start()
-      
+    this.untyped.setAttribute('tabindex', '0')
+    // Set a flashing indicator to start typing
+    this.setFlash(true)
+  }
+  setFlash (bool) {
+    if (bool) {
+      this.backgroundInterval = setInterval(() => {
+        this.text.classList.toggle('blue')
+      }, 400)
+    } else {
+      clearInterval(this.backgroundInterval)
+      this.text.classList.remove('blue')
+    }
+  }
+  stop () {
+    this.timer.stop()
+    // By removing the 'tabindex' property, the untyped element can not have typing focus
+    if (this.untyped.hasAttribute('tabindex')) {
+      this.untyped.removeAttribute('tabindex')
+    }
+  }
+  addListeners (text, onEnd) {
+    this.preStart(text) 
+    // Focus the text element 
     this.untyped.focus()
+
     watch(this.untyped, (e) => {
-      this.text.className = this.text.className.replace('blue', '')
-      notGone = false 
+      // Clear the flashing background once typing starts
+      this.setFlash(false)
       let char = keycoder.eventToCharacter(e)
       console.log(char)
       if (char === this.index.currentChar() && this.errorField.empty()) {
@@ -93,25 +111,35 @@ export default class {
           this.timer.stop()
           this.status.textContent = 'Done!'
           console.log('end')
-          onEnd()
+          onEnd(this.timer.percentDone)
           return
         }
       } else {
-        this.text.className = 'white-border error'
+        this.text.classList.add('error')
+        if (char === ' ') {
+          char = '·'
+        }
         this.errorField.addChar(char)
         console.log('incorrect')
       }
 
     }, (e) => {
-      // Delete char from error only if it has letters in it
-      if (!this.errorField.empty()) {
-        this.errorField.removeChar()
-        if (this.errorField.empty()) {
-          this.text.className = 'white-border fine'
-        }
-      }
+      this.deleteLetter()
     })
-
-    return
+  }
+  deleteLetter () {
+    // Delete char from error only if it has letters in it
+    if (!this.errorField.empty()) {
+      this.errorField.removeChar()
+      if (this.errorField.empty()) {
+        this.text.classList.remove('error')
+        this.text.classList.add('fine')
+      }
+    }
+  }
+  rerun (text, onEnd) {
+    this.buildParent()
+    this.stop()
+    this.timer = new Timr(0)
   }
 }
