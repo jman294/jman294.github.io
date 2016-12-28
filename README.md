@@ -1,2 +1,2 @@
 # jman294.github.io
-Tiper website
+My website
