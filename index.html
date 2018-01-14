@@ -22,6 +22,22 @@
         <!-- Add your site or application content here -->
         <div id="one">
           <h1>Jack's Website</h1>
+          <div id="ad">
+            <a class="adlink" href="https://jamads.herokuapp.com/click/1" target="_blank">
+            <img style="cursor: pointer;" src="https://jamads.herokuapp.com/image/1" height="64px" width="64px"/>
+            <p id="tagline"></p>
+            </a>
+            <a class="plug" href="https://jamads.herokuapp.com/">ad by Jamads</a>
+            <script>
+              var p=document.getElementById('tagline');
+              var req=new XMLHttpRequest();
+              req.open('GET', 'https://jamads.herokuapp.com/text/1');
+              req.onload = function() {
+                p.innerHTML = req.response;
+              };
+              req.send();
+            </script>
+          </div>
         </div>
         <div id="two">
         </div>
@@ -35,7 +51,6 @@
         <script src="js/plugins.js"></script>
         <script src="js/main.js"></script>
 
-        <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
         <script>
             window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
             ga('create','UA-109586847-2','auto');ga('send','pageview')
