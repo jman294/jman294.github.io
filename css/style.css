@@ -4,7 +4,7 @@
   top: 0%;
   left: 0%;
   bottom: 0%;
-  right: 50%;
+  right: 80%;
 
   text-align: center;
   padding-top: 15%;
@@ -28,13 +28,24 @@
 #ad {
   border: 1px solid #e0e0e0;
   padding: 5px;
-  width: 90px;
+  padding-left: 0px;
+  padding-right: 0px;
+  width: 74px;
   margin: auto;
+  margin-bottom: 10px;
+}
+
+#ad img {
+  display: inline-block;
 }
 
 #ad #tagline {
+  font-size: 10pt;
+  float: right;
   margin: 0px;
+  padding-bottom: 2px;
   text-decoration: none;
+  display: inline;
 }
 
 #ad .adlink {
@@ -46,4 +57,6 @@
   text-decoration: none;
   color: #a0a0a0;
   font-size: 7pt;
+  display: block;
+  margin-top: 10px;
 }
