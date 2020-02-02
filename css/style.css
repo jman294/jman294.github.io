@@ -96,8 +96,7 @@ a {
   position: absolute;
   top: 50%;
   right: 25%;
-  max-width: 50px;
-  max-height: 50px;
+  max-width: 100px;
 }
 
 .portfolio-switch .portfolio-img {
